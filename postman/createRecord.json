@@ -1,0 +1,22 @@
+{
+  "tableName": "createTableIntTestParent",
+  "data": {
+    "varcharColumn": "testName",
+    "createTableIntTest": [
+      {
+        "foreignKeyColumn" : "parentColumnId",
+        "data": {
+          "varcharColumn": "Some Text",
+          "dateColumn": "1991-01-01"
+        }
+      },
+      {
+        "foreignKeyColumn" : "parentColumnId",
+        "data": {
+          "varcharColumn": "Some Text2",
+          "dateColumn": "2020-01-01"
+        }
+      }
+    ]
+  }
+}

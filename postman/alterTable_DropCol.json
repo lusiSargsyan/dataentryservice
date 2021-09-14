@@ -1,0 +1,9 @@
+{
+  "tableName": "createTableIntTestParent",
+  "alterStrategy": "ADD",
+  "column": {
+    "name": "floatValue",
+    "type": "FLOAT",
+    "defaultValue": 1.2
+  }
+}

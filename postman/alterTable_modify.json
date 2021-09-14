@@ -1,0 +1,12 @@
+{
+  "tableName": "createTableIntTest",
+  "alterStrategy": "MODIFY",
+  "column": {
+    "name": "dateColumn",
+    "type": "VARCHAR",
+    "size": 255,
+    "validation": {
+      "validationStrategy": "REQUIRED"
+    }
+  }
+}

@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "0e62e971-4db2-4ee7-82f1-b877d4314940",
+		"name": "data-entry-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add column",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tableName\": \"createTableIntTestParent\",\n    \"alterStrategy\": \"ADD\",\n    \"column\": {\n        \"name\": \"floatValue\",\n        \"type\": \"FLOAT\",\n        \"defaultValue\": 1.2\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/alter/table",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"alter",
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Drop column",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tableName\": \"createTableIntTestParent\",\n    \"alterStrategy\": \"DROP\",\n    \"column\": {\n        \"name\": \"floatValue\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/alter/table",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"alter",
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify column",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tableName\": \"createTableIntTest\",\n    \"alterStrategy\": \"MODIFY\",\n    \"column\": {\n        \"name\": \"dateColumn\",\n        \"type\": \"VARCHAR\",\n        \"size\": 255,\n        \"validation\": {\n            \"validationStrategy\": \"REQUIRED\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/alter/table",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"alter",
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Drop table",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/drop/table/createTableIntTestParent",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"drop",
+						"table",
+						"createTableIntTestParent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create table",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"createTableIntTest\",\n  \"fields\": [\n    {\n      \"name\": \"id\",\n      \"isPrimaryKey\": true,\n      \"isAutoIncrement\": true,\n      \"type\": \"INT\",\n      \"size\": 10\n    },\n    {\n      \"name\": \"varcharColumn\",\n      \"type\": \"VARCHAR\",\n      \"size\": 255,\n      \"validation\": {\n        \"validationStrategy\": \"REQUIRED\"\n      }\n    },\n    {\n      \"name\": \"dateColumn\",\n      \"type\": \"DATE\",\n      \"validation\": {\n              \"validationStrategy\": \"CUSTOM\",\n              \"strategyLogic\": \"boolean isValidDate(String date) { boolean isValid = false;try {java.time.LocalDate localDate = java.time.LocalDate.parse(date,java.time.format.DateTimeFormatter.ofPattern(\\\"uuuu-M-d\\\").withResolverStyle(java.time.format.ResolverStyle.STRICT)); isValid = java.time.Period.between(localDate, java.time.LocalDate.now()).getYears() > 18; }catch (Exception e) {isValid = false;}return isValid;}\"\n            }\n    },\n    {\n      \"name\": \"parentColumnId\",\n      \"type\": \"INT\",\n      \"size\": 10\n    }\n  ],\n  \"references\": [\n    {\n      \"referenceTable\": {\n        \"name\": \"createTableIntTestParent\",\n        \"fields\": [\n          {\n            \"name\": \"id\",\n            \"isPrimaryKey\": true,\n            \"isAutoIncrement\": true,\n            \"type\": \"INT\",\n            \"size\": 10\n          },\n          {\n            \"name\": \"varcharColumn\",\n            \"type\": \"VARCHAR\",\n            \"size\": 255,\n            \"validation\": {\n                \"validationStrategy\": \"REQUIRED\"\n            }\n        }],\n        \"references\": []\n      },\n      \"toReferenceColumn\": \"id\",\n      \"fromReferenceColumn\": \"parentColumnId\",\n      \"modifyStrategy\": {\n        \"onDelete\": \"CASCADE\",\n        \"onUpdate\": \"CASCADE\"\n      }\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/create/table",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"create",
+						"table"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRecord",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tableName\": \"createTableIntTestParent\",\n    \"data\": {\n        \"varcharColumn\": \"testName\",\n        \"createTableIntTest\": [\n            {\n                \"foreignKeyColumn\" : \"parentColumnId\",\n                \"data\": {\n                    \"varcharColumn\": \"Some Text\",\n                    \"dateColumn\": \"1991-01-01\"\n                }\n            },\n           {\n                \"foreignKeyColumn\" : \"parentColumnId\",\n                \"data\": {\n                    \"varcharColumn\": \"Some Text2\",\n                    \"dateColumn\": \"2020-01-01\"\n                }\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/create/record",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"create",
+						"record"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Record",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tableName\": \"createTableIntTestParent\",\n    \"data\": {\n        \"varcharColumn\": \"NEW name\"\n    },\n    \"whereConditions\": {\n        \"andConditions\": [\n            {\n                \"columnName\" : \"id\",\n                \"value\" : \"1\",\n                \"operator\": \"=\"\n            },\n            {\n                \"columnName\" : \"varcharColumn\",\n                \"value\" : \"%testName%\",\n                \"operator\": \"LIKE\"\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/update/record",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"update",
+						"record"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Record",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/get/record/createTableIntTestParent/id/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"get",
+						"record",
+						"createTableIntTestParent",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRecordNoRefs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tableName\": \"createTableIntTestParent\",\n    \"data\": {\n        \"varcharColumn\": \"new record\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/create/record",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"create",
+						"record"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

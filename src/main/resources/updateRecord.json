@@ -1,0 +1,33 @@
+{
+  "tableName": "household",
+  "data": {
+    "name": "aaa",
+    "dateOfBirth": "1991-02-02"
+  },
+  "whereConditions": {
+    "andConditions": [
+      {
+        "columnName" : "id",
+        "value" : "10",
+        "operator": "="
+      },
+      {
+        "columnName" : "name",
+        "value" : "%aaa%",
+        "operator": "LIKE"
+      }
+    ],
+    "orConditions": [
+      {
+        "columnName" : "id",
+        "value" : "11",
+        "operator": "="
+      },
+      {
+        "columnName" : "name",
+        "value" : "%33%",
+        "operator": "LIKE"
+      }
+    ]
+  }
+}

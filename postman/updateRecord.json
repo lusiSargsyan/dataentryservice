@@ -1,0 +1,20 @@
+{
+  "tableName": "createTableIntTestParent",
+  "data": {
+    "varcharColumn": "NEW name"
+  },
+  "whereConditions": {
+    "andConditions": [
+      {
+        "columnName" : "id",
+        "value" : "1",
+        "operator": "="
+      },
+      {
+        "columnName" : "varcharColumn",
+        "value" : "%testName%",
+        "operator": "LIKE"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "tableName": "person",
+  "data": {
+    "last-name": "aaa"
+  },
+  "whereConditions": {
+    "andConditions": [
+      {
+        "columnName" : "id",
+        "value" : "10",
+        "operator": "="
+      }
+    ]
+  }
+}

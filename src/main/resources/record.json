@@ -1,0 +1,24 @@
+{
+  "tableName": "household",
+  "data": {
+    "name": "33333333333John",
+    "dateOfBirth": "1991-02-02",
+    "person": [
+      {
+        "foreignKeyColumn" : "householdId",
+        "data": {
+          "first-name": "dad",
+
+          "last-name": "Dohn"
+        }
+      },
+      {
+        "foreignKeyColumn" : "householdId",
+        "data": {
+          "first-name": "dad",
+          "last-name": "ddd"
+        }
+      }
+    ]
+  }
+}

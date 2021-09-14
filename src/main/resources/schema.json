@@ -1,0 +1,81 @@
+{
+  "name": "household",
+  "fields": [
+    {
+      "name": "id",
+      "isPrimaryKey": true,
+      "isAutoIncrement": true,
+      "type": "INT",
+      "size": 10,
+      "validation": {
+        "validationType": "REQUIRED"
+      }
+    },
+    {
+      "name": "name",
+      "type": "VARCHAR",
+      "size": 255,
+      "notNull": true,
+      "validation": {
+        "validationType": "REGEXP",
+        "validationStrategy": "[a-zA-Z]"
+      }
+    },
+    {
+      "name": "dateOfBirth",
+      "type": "DATE",
+      "notNull": true,
+      "validation": {
+        "validationType": "CUSTOM",
+        "validationStrategy": "boolean isValidDate(String date) { boolean isValid = false;try {java.time.LocalDate localDate = java.time.LocalDate.parse(date,java.time.format.DateTimeFormatter.ofPattern(\"uuuu-M-d\").withResolverStyle(java.time.format.ResolverStyle.STRICT)); isValid = java.time.Period.between(localDate, java.time.LocalDate.now()).getYears() > 18; }catch (Exception e) {isValid = false;}return isValid;}"
+      }
+    },
+    {
+      "name": "members",
+      "type": "INT",
+      "size": 11
+    }
+  ],
+  "references": [
+    {
+      "referenceTable": {
+        "name": "person",
+        "fields": [
+          {
+            "name": "id",
+            "isPrimaryKey": true,
+            "isAutoIncrement": true,
+            "type": "INT",
+            "size": 10,
+            "validation": {
+              "validationType": "REQUIRED"
+            }
+          },
+          {
+            "name": "first-name",
+            "type": "VARCHAR",
+            "size": 255,
+            "validation": {
+              "validationType": "REQUIRED"
+            }
+          },
+          {
+            "name": "last-name",
+            "type": "VARCHAR",
+            "size": 255,
+            "validation": {
+              "validationType": "REQUIRED"
+            }
+          }
+        ],
+        "references": []
+      },
+      "toReferenceColumn": "id",
+      "fromReferenceColumn": "members",
+      "modifyStrategy": {
+        "onDelete": "CASCADE",
+        "onUpdate": "CASCADE"
+      }
+    }
+  ]
+}
