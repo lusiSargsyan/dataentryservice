@@ -21,6 +21,7 @@ public class UpdateRecord {
     private List<Validation> validations;
     private Map<String, MysqlType> fieldsTypes;
     private Data validData;
+    public UpdateRecord() {}
 
     public void initData(List<Validation> validations, Map<String, MysqlType> fieldTypes) throws ValidationException {
         Stream<String> filteredDataKeysStream = data.keySet().stream()

@@ -32,6 +32,11 @@ public class Result {
     public static Result successResult(String message) {
         return new Result(ResultCode.SUCCESS, message);
     }
+
+    public static Result errorResult(ResultCode resultCode, String message) {
+        return new Result(resultCode, message);
+    }
+
     public static String errorResultString(Throwable e) {
         return errorResult(e).toString();
     }

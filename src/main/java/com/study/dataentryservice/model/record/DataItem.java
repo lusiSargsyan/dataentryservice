@@ -19,7 +19,7 @@ public class DataItem {
 
    public void validate(Validation validation) throws ValidationException {
       if (!validation.getValidationStrategy().validateBy(value, validation.getStrategyLogic())) {
-          throw new ValidationException("Invalid key: " + key);
+          throw new ValidationException("Invalid value for key: " + key);
       }
    }
 }

@@ -47,7 +47,8 @@ public class RecordController {
 
     @GetMapping(
             value = "/api/v1/get/record/{tableName}/{columnName}/{value}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> get(@PathVariable String tableName, @PathVariable String columnName, @PathVariable Object value) {
+    public ResponseEntity<?> get(@PathVariable String tableName, @PathVariable String columnName,
+                                 @PathVariable Object value) {
         try {
             JSONObject data = recordService.get(tableName, columnName, value);
             return ResponseEntity.ok().body(data.toString());

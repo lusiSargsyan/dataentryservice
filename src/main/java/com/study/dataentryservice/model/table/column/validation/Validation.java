@@ -11,6 +11,7 @@ import lombok.Setter;
 public class Validation {
     private String tableName;
     private String columnName;
-    private final ValidateStrategy validationStrategy;
-    private final String strategyLogic;
+    private ValidateStrategy validationStrategy;
+    private String strategyLogic;
+    public Validation() {}
 }

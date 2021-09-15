@@ -10,13 +10,14 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class ReferenceModel {
     @NotNull
-    private final Table referenceTable;
+    private Table referenceTable;
     @NotNull
-    private final String toReferenceColumn;
+    private String toReferenceColumn;
     @NotNull
-    private final String fromReferenceColumn;
+    private String fromReferenceColumn;
     @NotNull
-    private final ModifyStrategy modifyStrategy;
+    private ModifyStrategy modifyStrategy;
+    public ReferenceModel() {}
 
     public String getReferenceQueryPart() {
         return " , FOREIGN KEY ( " +
