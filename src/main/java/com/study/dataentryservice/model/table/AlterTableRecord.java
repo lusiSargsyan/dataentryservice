@@ -18,4 +18,5 @@ public class AlterTableRecord {
 
     @NotNull(message = "Column is required")
     private ColumnModel column;
+    public AlterTableRecord() {}
 }

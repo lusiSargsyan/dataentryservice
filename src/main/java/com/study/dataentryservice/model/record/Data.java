@@ -9,4 +9,5 @@ import java.util.LinkedHashSet;
 @AllArgsConstructor
 public class Data {
   private LinkedHashSet<DataItem> dataItems;
+  public Data() {}
 }

@@ -1,9 +1,11 @@
 package com.study.dataentryservice.model.table.column;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mysql.cj.MysqlType;
 import com.study.dataentryservice.model.table.column.validation.Validation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -12,19 +14,26 @@ import java.util.Objects;
 public class ColumnModel {
 
     @NotNull(message = "Field name is required.")
-    private final String name;
+    private String name;
     //TODO is required for add but not for alter
-    private final MysqlType type;
-    private final int size;
-    private final boolean isPrimaryKey;
-    private final boolean isAutoIncrement;
-    private final Validation validation;
-    private final Object defaultValue;
+    private MysqlType type;
+    private int size;
+    @JsonProperty("isPrimaryKey")
+    private boolean isPrimaryKey;
+
+    @JsonProperty("isAutoIncrement")
+    private boolean isAutoIncrement;
+
+    private Validation validation;
+    private Object defaultValue;
+
+    public ColumnModel() {
+    }
 
     @Override
     public String toString() {
-        StringBuilder fieldStringBuilder =  new StringBuilder("`" + getName() + "` ");
-        if(Objects.nonNull(getType())) {
+        StringBuilder fieldStringBuilder = new StringBuilder("`" + getName() + "` ");
+        if (Objects.nonNull(getType())) {
             fieldStringBuilder.append(" ").append(getType()).append(" ");
         }
         if (getSize() != 0) {
@@ -39,7 +48,7 @@ public class ColumnModel {
         if (Objects.nonNull(getValidation()) && Objects.nonNull(getValidation().getValidationStrategy())) {
             fieldStringBuilder.append(" NOT NULL ");
         }
-        if(Objects.nonNull(getDefaultValue())) {
+        if (Objects.nonNull(getDefaultValue())) {
             fieldStringBuilder.append(" DEFAULT ").append(defaultValue);
         }
         return fieldStringBuilder.toString();

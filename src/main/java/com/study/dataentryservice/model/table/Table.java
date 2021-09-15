@@ -1,5 +1,6 @@
 package com.study.dataentryservice.model.table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.study.dataentryservice.model.table.column.ColumnModel;
 import com.study.dataentryservice.model.table.column.ReferenceModel;
 import lombok.AllArgsConstructor;
@@ -13,10 +14,12 @@ import java.util.stream.Collectors;
 @Getter
 @AllArgsConstructor
 public class Table {
+
     @NotNull(message = "name is required")
-    private final String name;
-    private final Set<@Valid ColumnModel> fields;
-    private final Set<@Valid ReferenceModel> references;
+    private String name;
+    private Set<@Valid ColumnModel> fields;
+    private Set<@Valid ReferenceModel> references;
+    public Table() {}
 
     public String getFieldsAsString() {
       return fields.stream()
